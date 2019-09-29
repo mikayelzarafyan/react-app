@@ -1,0 +1,55 @@
+@import 'scss/general';
+
+.App {
+    text-align: left;
+    .jobs-list-wrapper {
+        .job-item {
+            .job-item-wrapper {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .logo {
+                    flex-shrink: 0;
+                    width: 80px;
+                    display: inline-block;
+                }
+
+                .content {
+                    flex-grow: 1;
+
+                    .title {
+                        font-weight: 700;
+                        margin-bottom: 5px;
+                    }
+
+                    .info {
+                        color: $link-color;
+
+                        .icon {
+                            margin-right: 5px;
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        span {
+                            display: inline-block;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+
+                .actions {
+                    flex-shrink: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-end;
+                    button {
+                        margin: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+}

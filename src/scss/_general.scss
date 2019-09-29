@@ -1,0 +1,78 @@
+@import "reset";
+@import 'variables';
+@import 'mixins';
+
+body {
+    font-size: 16px;
+    color: $text-color;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+a {
+    cursor: pointer;
+    color: $link-color;
+}
+
+img {
+    max-width: 100%;
+}
+
+p, button, input, textarea, select, h6 {
+    font-size: 1rem;
+}
+h1 {
+    font-size: 2.5rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.75rem;
+}
+h4 {
+    font-size: 1.5rem;
+}
+h5 {
+    font-size: 1.25rem;
+}
+
+.r-btn {
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+    padding: 5px 15px;
+    -webkit-appearance: none;
+    text-decoration: none;
+    line-height: 1;
+    outline: none;
+    min-height: 36px;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+    }
+    &:focus, &.focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+    &.primary {
+        background: $primary;
+        color: #fff;
+    }
+
+    &.accent {
+        background: $accent;
+        color: #fff;
+    }
+
+    .icon {
+        margin-right: 5px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
