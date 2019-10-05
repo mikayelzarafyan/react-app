@@ -250,3 +250,81 @@
         opacity: 0.5;
     }
 }
+
+.color-box-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    z-index: 9;
+
+    .color-box-button {
+        padding: 9px;
+        background-color: #eee;
+        cursor: pointer;
+        order: 2;
+        height: 40px;
+        width: 40px;
+    }
+
+    .color-box {
+        background-color: #eee;
+        max-width: 0;
+        overflow: hidden;
+        transition: max-width 0.2s ease-out;
+        width: 160px;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            padding: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .color-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            min-width: 160px;
+        }
+
+        .color-box-item {
+            width: 80px;
+            padding: 5px;
+            .color-item-title {
+                text-align: center;
+                text-transform: uppercase;
+                font-size: 11px;
+                color: $text-color;
+            }
+            .color-item {
+                width: 60px;
+                height: 60px;
+                margin: auto;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .sketch-picker {
+        position: absolute;
+        top: 0;
+        right: 200px;
+        height: 0;
+        opacity: 0;
+        transition: all 0.2s ease-out;
+        overflow: hidden;
+    }
+
+    &.active {
+        .color-picker-wrapper.show-picker {
+            .sketch-picker {
+                display: block;
+                opacity: 1;
+                height: auto;
+            }
+        }
+    }
+}

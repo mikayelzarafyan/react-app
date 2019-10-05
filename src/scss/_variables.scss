@@ -1,8 +1,15 @@
+:root {
+    --primary-color: #007bff;
+    --accent-color: #28a745;
+    --dark-color: #343a40;
+    --light-color: #6c757d;
+}
+
 // Body
-$primary: #007bff;
-$accent: #28a745;
-$text-color: #343a40;
-$link-color: #6c757d;
+$primary: var(--primary-color);
+$accent: var(--accent-color);
+$text-color: var(--dark-color);
+$link-color: var(--light-color);
 $error: #dc3545;
 
 // Colors
