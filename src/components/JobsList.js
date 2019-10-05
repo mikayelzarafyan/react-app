@@ -6,6 +6,9 @@ class JobsList extends React.Component {
         const jobs = this.props.jobs;
         return (
             <div className="jobs-list-wrapper">
+                <div className="list-info">
+                    <span>Showing {jobs.length} of 10</span>
+                </div>
                 <ul>
                     {jobs.map((job) =>
                         <JobItem

@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../logo.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarker, faClock, faBookmark, faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { TYPES, LOCATION } from '../utils/constants';
 
 class JobItem extends React.Component {
     handleBookmarkClick(id, e) {
@@ -12,6 +13,8 @@ class JobItem extends React.Component {
 
     render() {
         const job = this.props.job;
+        const location = LOCATION.find(item => item.key === job.location);
+        const type = TYPES.find(item => item.key === job.type);
         return (
             <li className="job-item">
                 <div className="job-item-wrapper">
@@ -25,11 +28,11 @@ class JobItem extends React.Component {
                         <div className="info">
                             <span className="location">
                                 <FontAwesomeIcon icon={faMapMarker} size="xs" className='icon' />
-                                {job.location}
+                                {location.value}
                             </span>
                             <span className="type">
                                 <FontAwesomeIcon icon={faClock} size="xs" className='icon' />
-                                {job.type}
+                                {type.value}
                             </span>
                         </div>
                     </div>

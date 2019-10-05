@@ -2,8 +2,40 @@
 
 .App {
     text-align: left;
+    padding: 10px;
+
+    .jobs-main-container {
+        max-width: 1200px;
+        margin: auto;
+
+        & > .title {
+            text-align: center;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+    }
+    .jobs-content {
+        display: flex;
+
+        .jobs-list-wrapper {
+            width: 75%;
+        }
+        .advanced-search {
+            width: 25%;
+            padding-right: 10px;
+        }
+    }
     .jobs-list-wrapper {
+        .list-info {
+            margin-bottom: 10px;
+        }
         .job-item {
+            border: 1px solid #eee;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 3px 5px;
+
             .job-item-wrapper {
                 display: flex;
                 justify-content: space-between;
@@ -14,7 +46,6 @@
                     width: 80px;
                     display: inline-block;
                 }
-
                 .content {
                     flex-grow: 1;
 
@@ -22,34 +53,200 @@
                         font-weight: 700;
                         margin-bottom: 5px;
                     }
-
                     .info {
                         color: $link-color;
 
                         .icon {
                             margin-right: 5px;
                             display: inline-block;
-                            vertical-align: middle;
                         }
-
                         span {
                             display: inline-block;
                             margin-right: 5px;
                         }
                     }
                 }
-
                 .actions {
                     flex-shrink: 0;
                     display: flex;
                     flex-direction: column;
                     justify-content: flex-start;
                     align-items: flex-end;
+
                     button {
                         margin: 5px 0;
                     }
                 }
             }
         }
+    }
+    .filters-wrapper {
+        display: flex;
+        padding: 5px 0;
+        margin-bottom: 15px;
+
+        .select-wrapper {
+            margin-right: 5px;
+        }
+    }
+    .select-wrapper {
+        select {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            line-height: 1.42857143;
+            color: $text-color;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid $link-color;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            outline: none;
+        }
+        option {
+            font-weight: normal;
+            display: block;
+            white-space: pre;
+            min-height: 1.2em;
+            padding: 0px 2px 1px;
+        }
+    }
+    .search-wrapper {
+        display: flex;
+        flex-grow: 1;
+
+        button {
+            flex-shrink: 0;
+            display: block;
+            height: 34px;
+            padding: 6px 12px;
+            line-height: 1.42857143;
+            color: $text-color;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid $link-color;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            line-height: 1.42857143;
+            color: $text-color;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid $link-color;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            outline: none;
+            margin-right: 5px;
+        }
+    }
+}
+.advanced-search-title {
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+.accordion-wrapper {
+    .accordion-item {
+        margin-bottom: 10px;
+
+        .accordion-button {
+            position: relative;
+            background-color: #eee;
+            color: $text-color;
+            cursor: pointer;
+            padding: 10px 15px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: 0.4s;
+
+            &.active, &:hover {
+                background-color: #ccc;
+            }
+            &:after {
+                content: '\002B';
+                color: $text-color;
+                font-weight: bold;
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                margin-left: 5px;
+                font-size: 22px;
+            }
+            &.active:after {
+                content: "\2212";
+            }
+        }
+        .accordion-panel {
+            padding: 0 10px;
+            background-color: #fff;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+    }
+}
+.custom-checkbox {
+    display: block;
+    position: relative;
+    padding: 3px 0;
+    padding-left: 25px;
+    margin: 5px 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+
+        &:checked ~ .checkmark {
+            background-color: $primary;
+        }
+        &:checked ~ .checkmark:after {
+            display: block;
+        }
+    }
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: #eee;
+
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 8px;
+            top: 4px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+    &:hover {
+        opacity: 0.5;
     }
 }
