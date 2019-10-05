@@ -7,7 +7,7 @@ class JobsList extends React.Component {
         return (
             <div className="jobs-list-wrapper">
                 <div className="list-info">
-                    <span>Showing {jobs.length} of 10</span>
+                    <span>Showing {jobs.length} of {this.props.allJobsCount}</span>
                 </div>
                 <ul>
                     {jobs.map((job) =>

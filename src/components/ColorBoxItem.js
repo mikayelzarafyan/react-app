@@ -21,7 +21,7 @@ class ColorBoxItem extends React.Component {
                     {this.props.colorCode}
                 </div>
                 <div
-                    className="color-item"
+                    className={`color-item ${(this.props.currentColorCode === this.props.colorCode) ? "active" : ""}`}
                     style={style}
                     onClick={(e) => this.onChangeColor(this.props.colorCode, e)}
                 ></div>

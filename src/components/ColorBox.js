@@ -22,7 +22,7 @@ class ColorBox extends React.Component {
 
         this.state = {
             colors: colors,
-            showColorPicker: '',
+            showColorPickerClass: '',
             currentColorCode: 'primary'
         };
 
@@ -44,7 +44,7 @@ class ColorBox extends React.Component {
         let colorBoxWrapper = event.target.closest('.color-box-wrapper');
 
         if(!colorBoxWrapper) {
-            this.setState({ showColorPicker: '' });
+            this.setState({ showColorPickerClass: '' });
             let domColorBoxWrapper = document.querySelector('.color-box-wrapper');
             if(domColorBoxWrapper.classList.contains('active')) {
                 domColorBoxWrapper.classList.remove('active');
@@ -66,7 +66,7 @@ class ColorBox extends React.Component {
         let colorBox = e.target.closest('.color-box-button').nextElementSibling;
         if (colorBox.style.maxWidth) {
             colorBox.style.maxWidth = null;
-            this.setState({ showColorPicker: '' });
+            this.setState({ showColorPickerClass: '' });
         } else {
             colorBox.style.maxWidth = `${colorBox.scrollWidth}px`;
         }
@@ -80,7 +80,7 @@ class ColorBox extends React.Component {
      */
     handleChangeColor = async (colorCode) => {
         await this.setState({ currentColorCode: colorCode });
-        await this.setState({ showColorPicker: 'show-picker' });
+        await this.setState({ showColorPickerClass: 'show-picker' });
     }
 
     /**
@@ -109,12 +109,13 @@ class ColorBox extends React.Component {
                 <div className="color-box-button" onClick={(e) => this.toggleBox(e)}>
                     <FontAwesomeIcon icon={faCog} size="lg" className='icon' />
                 </div>
-                <div className="color-box">
+                <div className={`color-box ${this.state.showColorPickerClass}`}>
                     <div className="title">Color Box</div>
                     <div className="color-row">
                         {colors.map((color, index) =>
                             <ColorBoxItem
                                 key={index.toString()}
+                                currentColorCode={this.state.currentColorCode}
                                 colorCode={color[0]}
                                 color={color[1]}
                                 onChangeColor={ this.handleChangeColor }
@@ -122,7 +123,7 @@ class ColorBox extends React.Component {
                         )}
                     </div>
                 </div>
-                <div className={`color-picker-wrapper ${this.state.showColorPicker}` }>
+                <div className={`color-picker-wrapper ${this.state.showColorPickerClass}` }>
                     <SketchPicker
                         color={ this.state.colorPicker }
                         onChangeComplete={ this.handleChangeComplete }

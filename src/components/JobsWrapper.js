@@ -175,6 +175,7 @@ class JobsWrapper extends React.Component {
                     />
                     <JobsList
                         jobs={jobs}
+                        allJobsCount={JOBS.length}
                         onBookmark={this.handleBookmark}
                     />
                 </div>

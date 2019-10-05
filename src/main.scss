@@ -340,6 +340,16 @@
                 cursor: pointer;
             }
         }
+
+        &.show-picker {
+            .color-box-item {
+                .color-item {
+                    &.active {
+                        @include box-shadow(0px 0px 8px 0px rgba(103, 158, 255, 0.76));
+                    }
+                }
+            }
+        }
     }
 
     .sketch-picker {
