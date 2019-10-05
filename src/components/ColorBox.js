@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import ColorBoxItem from './ColorBoxItem';
 import { SketchPicker } from 'react-color';
-import JobItem from "./JobsList";
 
 class ColorBox extends React.Component {
     constructor(props) {
         super(props);
+
         let colors = {
             primary: '#007bff',
             accent: '#28a745',
@@ -18,7 +18,6 @@ class ColorBox extends React.Component {
         if(!localStorage.getItem('AppColors')) {
             localStorage.setItem('AppColors', JSON.stringify(colors));
         }
-
         colors = JSON.parse(localStorage.getItem('AppColors'));
 
         this.state = {
@@ -30,7 +29,32 @@ class ColorBox extends React.Component {
         Object.entries(colors).map(color => {
             document.documentElement.style
                 .setProperty(`--${color[0]}-color`, color[1]);
-        })
+        });
+
+        window.addEventListener('click', (event) => {
+            this.closeColorBoxOnDocumentClick(event);
+        });
+    }
+
+    /**
+     * Close Opened Color Box on document other place click
+     * @param event
+     */
+    closeColorBoxOnDocumentClick(event) {
+        let colorBoxWrapper = event.target.closest('.color-box-wrapper');
+
+        if(!colorBoxWrapper) {
+            this.setState({ showColorPicker: '' });
+            let domColorBoxWrapper = document.querySelector('.color-box-wrapper');
+            if(domColorBoxWrapper.classList.contains('active')) {
+                domColorBoxWrapper.classList.remove('active');
+                let colorBox = domColorBoxWrapper.querySelector('.color-box');
+
+                if(colorBox) {
+                    colorBox.style.maxWidth = null;
+                }
+            }
+        }
     }
 
     /**
@@ -39,12 +63,12 @@ class ColorBox extends React.Component {
      */
     toggleBox(e) {
         e.target.closest('.color-box-wrapper').classList.toggle("active");
-        let panel = e.target.closest('.color-box-button').nextElementSibling;
-        if (panel.style.maxWidth) {
-            panel.style.maxWidth = null;
+        let colorBox = e.target.closest('.color-box-button').nextElementSibling;
+        if (colorBox.style.maxWidth) {
+            colorBox.style.maxWidth = null;
             this.setState({ showColorPicker: '' });
         } else {
-            panel.style.maxWidth = `${panel.scrollWidth}px`;
+            colorBox.style.maxWidth = `${colorBox.scrollWidth}px`;
         }
     }
 
