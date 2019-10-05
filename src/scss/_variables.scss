@@ -12,6 +12,15 @@ $text-color: var(--dark-color);
 $link-color: var(--light-color);
 $error: #dc3545;
 
+/*breakpoints*/
+$desktop-xxl-large: 1600px;
+$desktop-large: 1400px;
+$desktop: 1200px;
+$tablet-pro: 1024px;
+$tablet: 991px;
+$mobile: 767px;
+$xs-screen: 480px;
+
 // Colors
 $blue: #3490dc;
 $indigo: #6574cd;

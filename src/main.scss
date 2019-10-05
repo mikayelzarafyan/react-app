@@ -18,12 +18,25 @@
     .jobs-content {
         display: flex;
 
+        @media screen and (max-width: $mobile){
+            flex-wrap: wrap;
+        }
+
         .jobs-list-wrapper {
             width: 75%;
+
+            @media screen and (max-width: $mobile){
+                width: 100%;
+            }
         }
         .advanced-search {
             width: 25%;
             padding-right: 10px;
+
+            @media screen and (max-width: $mobile){
+                width: 100%;
+                padding-right: 0;
+            }
         }
     }
     .jobs-list-wrapper {
@@ -40,6 +53,10 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+
+                @media screen and (max-width: $mobile){
+                    flex-wrap: wrap;
+                }
 
                 .logo {
                     flex-shrink: 0;
@@ -76,6 +93,13 @@
                     button {
                         margin: 5px 0;
                     }
+
+                    @media screen and (max-width: $mobile){
+                        width: 100%;
+                        button {
+                            width: 100%;
+                        }
+                    }
                 }
             }
         }
@@ -85,8 +109,18 @@
         padding: 5px 0;
         margin-bottom: 15px;
 
+        @media screen and (max-width: $mobile){
+            flex-wrap: wrap;
+        }
+
         .select-wrapper {
             margin-right: 5px;
+
+            @media screen and (max-width: $mobile){
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
         }
     }
     .select-wrapper {
@@ -316,6 +350,11 @@
         opacity: 0;
         transition: all 0.2s ease-out;
         overflow: hidden;
+
+        @media screen and (max-width: $xs-screen){
+            top: 200px;
+            right: 0;
+        }
     }
 
     &.active {
