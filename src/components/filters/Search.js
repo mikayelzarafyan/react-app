@@ -1,9 +1,10 @@
 import React from 'react';
 
 class Search extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {searchValue: ''};
+    handleOnInput(value) {
+        if(typeof this.props.onInput === 'function') {
+            this.props.onInput(value);
+        }
     }
 
     handleFilter(value) {
@@ -16,11 +17,11 @@ class Search extends React.Component {
             <div className="search-wrapper">
                 <input
                     type="text"
-                    value={this.state.searchValue}
+                    value={this.props.searchValue}
                     placeholder={this.props.placeholder}
-                    onChange={event => this.setState({ searchValue: event.target.value })}
+                    onChange={event => this.handleOnInput(event.target.value)}
                 />
-                <button onClick={() => this.handleFilter(this.state.searchValue)}>Search</button>
+                <button onClick={() => this.handleFilter(this.props.searchValue)}>Search</button>
             </div>
         );
     };

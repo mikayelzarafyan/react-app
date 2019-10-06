@@ -9,6 +9,7 @@ class JobsWrapper extends React.Component {
         super(props);
         this.handleBookmark = this.handleBookmark.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
+        this.handleOnSearchInput = this.handleOnSearchInput.bind(this);
         this.handleAdvancedFilter = this.handleAdvancedFilter.bind(this);
         this.state = {
             jobs: [],
@@ -51,6 +52,15 @@ class JobsWrapper extends React.Component {
         });
 
         this.setState({jobs});
+    }
+
+    /**
+     * Change Search Input Value on change event
+     * @param value
+     * @returns {Promise<void>}
+     */
+    async handleOnSearchInput(value) {
+        await this.setState({ filterSearch: value });
     }
 
     /**
@@ -113,6 +123,10 @@ class JobsWrapper extends React.Component {
             });
         }
 
+        this.setState({ filterLocation: 'all' });
+        this.setState({ filterCategory: 'all' });
+        this.setState({ filterSearch: '' });
+
         await this.setState({jobs: newJobs});
     }
 
@@ -172,6 +186,10 @@ class JobsWrapper extends React.Component {
                 <h2 className="title">Jobs Page</h2>
                 <Filters
                     onFilter={this.handleFilter}
+                    onInput={this.handleOnSearchInput}
+                    filterLocation={this.state.filterLocation}
+                    filterCategory={this.state.filterCategory}
+                    filterSearch={this.state.filterSearch}
                 />
                 <div className="jobs-content">
                     <AdvancedSearch
