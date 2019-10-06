@@ -31,6 +31,10 @@ class AccordionItem extends React.Component {
 
     render() {
         const options = this.props.options || [];
+        let selectedItems = this.props.selectedItems;
+        if(!selectedItems) {
+            selectedItems = [];
+        }
         return (
             <div className="accordion-item">
                 <button
@@ -47,6 +51,7 @@ class AccordionItem extends React.Component {
                             <input
                                 type="checkbox"
                                 value={option.key}
+                                checked={selectedItems.includes(option.key) ? true : false}
                                 onChange={(e) => this.handleAdvancedFilter(e)}
                             />
                             <span className="checkmark"></span>

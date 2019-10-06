@@ -178,6 +178,10 @@ class JobsWrapper extends React.Component {
             });
         }
 
+        this.setState({ selectedLocation: [] });
+        this.setState({ selectedCategories: [] });
+        this.setState({ selectedTypes: [] });
+
         await this.setState({jobs: newJobs});
     }
 
@@ -197,6 +201,9 @@ class JobsWrapper extends React.Component {
                     <AdvancedSearch
                         onFilter={this.handleFilter}
                         handleAdvancedFilter={this.handleAdvancedFilter}
+                        selectedLocation={this.state.selectedLocation}
+                        selectedCategories={this.state.selectedCategories}
+                        selectedTypes={this.state.selectedTypes}
                     />
                     <JobsList
                         jobs={jobs}

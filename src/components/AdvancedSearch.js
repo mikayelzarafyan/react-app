@@ -8,6 +8,9 @@ class AdvancedSearch extends React.Component {
                 <h4 className="advanced-search-title">Advanced Search</h4>
                 <Accordion
                     handleAdvancedFilter={this.props.handleAdvancedFilter}
+                    selectedLocation={this.props.selectedLocation}
+                    selectedCategories={this.props.selectedCategories}
+                    selectedTypes={this.props.selectedTypes}
                 />
             </div>
         );
