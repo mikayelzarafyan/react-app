@@ -1,4 +1,5 @@
 const CATEGORIES = [
+    {key: "architecture", value: "Architecture"},
     {key: "programming", value: 'Programming'},
     {key: "design", value: 'Design'},
 ];

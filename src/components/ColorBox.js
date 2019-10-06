@@ -29,6 +29,7 @@ class ColorBox extends React.Component {
         Object.entries(colors).map(color => {
             document.documentElement.style
                 .setProperty(`--${color[0]}-color`, color[1]);
+            return color;
         });
 
         window.addEventListener('click', (event) => {

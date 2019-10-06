@@ -2,15 +2,7 @@ import React from 'react';
 import JobsList from './JobsList';
 import Filters from './Filters';
 import AdvancedSearch from './AdvancedSearch';
-
-const JOBS =  [
-    {id: 1, category: 'programming', price: '$20', bookmarked: true, name: 'JS Developer', location: 'yerevan', type: 'full'},
-    {id: 2, category: 'programming', price: '$50', bookmarked: true, name: 'JS Developer', location: 'amsterdam', type: 'full'},
-    {id: 3, category: 'design', price: '$30', bookmarked: false, name: 'UX Designer', location: 'amsterdam', type: 'full'},
-    {id: 4, category: 'programming', price: '$50', bookmarked: true, name: 'Full Stack', location: 'usaLa', type: 'part'},
-    {id: 5, category: 'design', price: '$30', bookmarked: false, name: 'UX Designer', location: 'usaNewYork', type: 'full'},
-    {id: 6, category: 'programming', price: '$20', bookmarked: true, name: 'JAVA Developer', location: 'amsterdam', type: 'part'}
-];
+import { DBOperations, JOBS } from '../services/DBService';
 
 class JobsWrapper extends React.Component {
     constructor(props) {
@@ -19,7 +11,7 @@ class JobsWrapper extends React.Component {
         this.handleFilter = this.handleFilter.bind(this);
         this.handleAdvancedFilter = this.handleAdvancedFilter.bind(this);
         this.state = {
-            jobs: JOBS,
+            jobs: [],
             filterLocation: 'all',
             filterCategory: 'all',
             filterSearch: '',
@@ -27,6 +19,18 @@ class JobsWrapper extends React.Component {
             selectedLocation: [],
             selectedTypes: [],
         };
+
+        this._getAllJobs();
+    }
+
+    /**
+     * Get All Jobs From Index Db
+     * @private
+     */
+    _getAllJobs() {
+        DBOperations.getAll().then(async jobs => {
+            await this.setState({ jobs: jobs })
+        });
     }
 
     /**
@@ -37,9 +41,10 @@ class JobsWrapper extends React.Component {
     handleBookmark(id, e) {
         let jobs = this.state.jobs;
 
-        jobs.map((item) => {
+        jobs.map(async (item) => {
             if(item.id === id) {
                 item.bookmarked = !item.bookmarked;
+                await DBOperations.set(item);
             }
 
             return item;

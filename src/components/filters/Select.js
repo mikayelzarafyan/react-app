@@ -1,5 +1,4 @@
 import React from 'react';
-import JobItem from "../JobsList";
 
 class Select extends React.Component {
     handleFilter(e) {
