@@ -1,13 +1,20 @@
 import React from 'react';
 
 class AccordionItem extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isOpen: false,
+        };
+    }
 
     /**
      * Function to toggle accordion open and close
      * @param e
      */
     toggleAccordion(e) {
-        e.target.classList.toggle("active");
+        this.setState({isOpen: !this.state.isOpen});
         let panel = e.target.nextElementSibling;
         if (panel.style.maxHeight) {
             panel.style.maxHeight = null;
@@ -26,7 +33,10 @@ class AccordionItem extends React.Component {
         const options = this.props.options || [];
         return (
             <div className="accordion-item">
-                <button className="accordion-button" onClick={(e) => this.toggleAccordion(e)}>{this.props.title}</button>
+                <button
+                    className={"accordion-button " + (this.state.isOpen ? 'active' : '')}
+                    onClick={(e) => this.toggleAccordion(e)}
+                >{this.props.title}</button>
                 <div className="accordion-panel">
                     {options.map((option, index) =>
                         <label

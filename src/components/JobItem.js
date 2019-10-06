@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../logo.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarker, faClock, faBookmark, faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { TYPES, LOCATION } from '../utils/constants';
@@ -18,9 +17,11 @@ class JobItem extends React.Component {
         return (
             <li className="job-item">
                 <div className="job-item-wrapper">
-                    <div className="logo">
-                        <img src={logo} className="job-logo" alt="logo" />
-                    </div>
+                    {job.img ? (
+                        <div className="logo">
+                            <img src={job.img} className="job-logo" alt="logo" />
+                        </div>
+                    ) : ''}
                     <div className="content">
                         <div className="title">
                             {job.name}

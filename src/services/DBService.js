@@ -3,16 +3,16 @@ import { openDB } from 'idb';
 const DATABASE_NAME = 'RAJOBS';
 const DATABASE_VERSION = 1;
 const JOBS =  [
-    {id: 1, category: 'programming', price: '$20', bookmarked: true, name: 'JS Developer', location: 'yerevan', type: 'full'},
-    {id: 2, category: 'programming', price: '$50', bookmarked: true, name: 'JS Developer', location: 'amsterdam', type: 'full'},
-    {id: 3, category: 'design', price: '$30', bookmarked: false, name: 'UX Designer', location: 'amsterdam', type: 'full'},
+    {id: 1, category: 'programming', price: '$20', bookmarked: true, name: 'JS Developer', location: 'yerevan', type: 'full', img: '/images/job-image1.png'},
+    {id: 2, category: 'programming', price: '$50', bookmarked: true, name: 'JS Developer', location: 'amsterdam', type: 'full', img: '/images/job-image2.png'},
+    {id: 3, category: 'design', price: '$30', bookmarked: false, name: 'UX Designer', location: 'amsterdam', type: 'full', img: '/images/job-image1.png'},
     {id: 4, category: 'programming', price: '$50', bookmarked: true, name: 'Full Stack', location: 'usaLa', type: 'part'},
-    {id: 5, category: 'design', price: '$30', bookmarked: false, name: 'UX Designer', location: 'usaNewYork', type: 'full'},
-    {id: 6, category: 'programming', price: '$20', bookmarked: true, name: 'JAVA Developer', location: 'amsterdam', type: 'part'},
-    {id: 7, category: 'architecture', price: '$30', bookmarked: true, name: 'Architect', location: 'amsterdam', type: 'per'},
-    {id: 8, category: 'programming', price: '$50', bookmarked: true, name: 'C# Developer', location: 'usaNewYork', type: 'full'},
-    {id: 9, category: 'architecture', price: '$60', bookmarked: true, name: 'Architect Building', location: 'yerevan', type: 'per'},
-    {id: 10, category: 'programming', price: '$60', bookmarked: true, name: '.Net Developer', location: 'amsterdam', type: 'part'}
+    {id: 5, category: 'design', price: '$30', bookmarked: false, name: 'UX Designer', location: 'usaNewYork', type: 'full', img: '/images/job-image2.png'},
+    {id: 6, category: 'programming', price: '$20', bookmarked: true, name: 'JAVA Developer', location: 'amsterdam', type: 'part', img: '/images/job-image1.png'},
+    {id: 7, category: 'architecture', price: '$30', bookmarked: true, name: 'Architect', location: 'amsterdam', type: 'per', img: '/images/job-image2.png'},
+    {id: 8, category: 'programming', price: '$50', bookmarked: true, name: 'C# Developer', location: 'usaNewYork', type: 'full', img: '/images/job-image1.png'},
+    {id: 9, category: 'architecture', price: '$60', bookmarked: true, name: 'Architect Building', location: 'yerevan', type: 'per',  img: '/images/job-image2.png'},
+    {id: 10, category: 'programming', price: '$60', bookmarked: true, name: '.Net Developer', location: 'amsterdam', type: 'part', img: '/images/job-image1.png'}
 ];
 
 const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
@@ -28,6 +28,7 @@ const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
                     name: job.name,
                     location: job.location,
                     type: job.type,
+                    img: job.img
                 });
             }
         }

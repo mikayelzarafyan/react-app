@@ -21,6 +21,7 @@ class ColorBox extends React.Component {
         colors = JSON.parse(localStorage.getItem('AppColors'));
 
         this.state = {
+            isOpen: false,
             colors: colors,
             showColorPickerClass: '',
             currentColorCode: 'primary'
@@ -48,7 +49,7 @@ class ColorBox extends React.Component {
             this.setState({ showColorPickerClass: '' });
             let domColorBoxWrapper = document.querySelector('.color-box-wrapper');
             if(domColorBoxWrapper.classList.contains('active')) {
-                domColorBoxWrapper.classList.remove('active');
+                this.setState({isOpen: false});
                 let colorBox = domColorBoxWrapper.querySelector('.color-box');
 
                 if(colorBox) {
@@ -63,7 +64,7 @@ class ColorBox extends React.Component {
      * @param e
      */
     toggleBox(e) {
-        e.target.closest('.color-box-wrapper').classList.toggle("active");
+        this.setState({isOpen: !this.state.isOpen});
         let colorBox = e.target.closest('.color-box-button').nextElementSibling;
         if (colorBox.style.maxWidth) {
             colorBox.style.maxWidth = null;
@@ -106,7 +107,7 @@ class ColorBox extends React.Component {
     render() {
         let colors = Object.entries(this.state.colors);
         return (
-            <div className="color-box-wrapper">
+            <div className={"color-box-wrapper " + (this.state.isOpen ? 'active' : '')}>
                 <div className="color-box-button" onClick={(e) => this.toggleBox(e)}>
                     <FontAwesomeIcon icon={faCog} size="lg" className='icon' />
                 </div>
