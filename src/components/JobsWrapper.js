@@ -2,7 +2,7 @@ import React from 'react';
 import JobsList from './JobsList';
 import Filters from './Filters';
 import AdvancedSearch from './AdvancedSearch';
-import { DBOperations, JOBS } from '../services/DBService';
+import { DBOperations } from '../services/DBService';
 
 class JobsWrapper extends React.Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class JobsWrapper extends React.Component {
         this.handleAdvancedFilter = this.handleAdvancedFilter.bind(this);
         this.state = {
             jobs: [],
+            allJobs: [],
             filterLocation: 'all',
             filterCategory: 'all',
             filterSearch: '',
@@ -30,7 +31,8 @@ class JobsWrapper extends React.Component {
      */
     _getAllJobs() {
         DBOperations.getAll().then(async jobs => {
-            await this.setState({ jobs: jobs })
+            await this.setState({ jobs: jobs });
+            await this.setState({ allJobs: jobs });
         });
     }
 
@@ -71,7 +73,7 @@ class JobsWrapper extends React.Component {
      * @returns {Promise<void>}
      */
     async handleAdvancedFilter(value, selected, filterType) {
-        let newJobs = JOBS;
+        let newJobs = this.state.allJobs;
 
         if(filterType === 'location') {
             if(selected) {
@@ -137,7 +139,7 @@ class JobsWrapper extends React.Component {
      * @returns {Promise<void>}
      */
     async handleFilter(value, type) {
-        let newJobs = JOBS;
+        let newJobs = this.state.allJobs;
 
         if(type === 'location') {
             await this.setState({ filterLocation: value })
@@ -198,7 +200,7 @@ class JobsWrapper extends React.Component {
                     />
                     <JobsList
                         jobs={jobs}
-                        allJobsCount={JOBS.length}
+                        allJobsCount={this.state.allJobs.length}
                         onBookmark={this.handleBookmark}
                     />
                 </div>
