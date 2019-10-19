@@ -7,7 +7,6 @@ import { DBOperations } from '../services/DBService';
 class JobsWrapper extends React.Component {
     constructor(props) {
         super(props);
-        this.handleBookmark = this.handleBookmark.bind(this);
         this.handleFilter = this.handleFilter.bind(this);
         this.handleOnSearchInput = this.handleOnSearchInput.bind(this);
         this.handleAdvancedFilter = this.handleAdvancedFilter.bind(this);
@@ -34,26 +33,6 @@ class JobsWrapper extends React.Component {
             await this.setState({ jobs: jobs });
             await this.setState({ allJobs: jobs });
         });
-    }
-
-    /**
-     * Toggle Job state by bookmark
-     * @param id
-     * @param e
-     */
-    handleBookmark(id, e) {
-        let jobs = this.state.jobs;
-
-        jobs.map(async (item) => {
-            if(item.id === id) {
-                item.bookmarked = !item.bookmarked;
-                await DBOperations.set(item);
-            }
-
-            return item;
-        });
-
-        this.setState({jobs});
     }
 
     /**
@@ -125,11 +104,12 @@ class JobsWrapper extends React.Component {
             });
         }
 
-        this.setState({ filterLocation: 'all' });
-        this.setState({ filterCategory: 'all' });
-        this.setState({ filterSearch: '' });
-
-        await this.setState({jobs: newJobs});
+        await this.setState({
+            filterLocation: 'all',
+            filterCategory: 'all',
+            filterSearch: '',
+            jobs: newJobs
+        });
     }
 
     /**
@@ -178,11 +158,12 @@ class JobsWrapper extends React.Component {
             });
         }
 
-        this.setState({ selectedLocation: [] });
-        this.setState({ selectedCategories: [] });
-        this.setState({ selectedTypes: [] });
-
-        await this.setState({jobs: newJobs});
+        await this.setState({
+            selectedLocation: [],
+            selectedCategories: [],
+            selectedTypes: [],
+            jobs: newJobs
+        });
     }
 
     render() {
@@ -208,7 +189,6 @@ class JobsWrapper extends React.Component {
                     <JobsList
                         jobs={jobs}
                         allJobsCount={this.state.allJobs.length}
-                        onBookmark={this.handleBookmark}
                     />
                 </div>
             </div>

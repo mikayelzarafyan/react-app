@@ -14,7 +14,6 @@ class JobsList extends React.Component {
                         <JobItem
                             key={job.id.toString()}
                             job={job}
-                            onBookmark={this.props.onBookmark}
                         />
                     )}
                 </ul>
